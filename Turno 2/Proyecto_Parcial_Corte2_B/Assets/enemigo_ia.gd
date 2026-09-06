@@ -108,13 +108,16 @@ func recibir_dano(cantidad: float) -> float:
 	Efectos.particulas(particulas_impacto)
 	return vida
 
-
 func _patrullar(delta: float) -> void:
 	if puntos.is_empty():
 		_frenar(delta)
 		return
+		
+		
 	var destino: Vector3 = puntos[indice_punto]
 	_moverse_hacia(destino, 1.0, delta)
+	
+	
 	if _distancia_plana(global_position, destino) < 0.5:
 		indice_punto = (indice_punto + 1) % puntos.size()
 
@@ -122,11 +125,14 @@ func _patrullar(delta: float) -> void:
 func _moverse_hacia(destino: Vector3, factor: float, delta: float) -> void:
 	var direccion := destino - global_position
 	direccion.y = 0.0
+	
 	var objetivo := Vector3.ZERO
 	if direccion.length() > 0.05:
 		objetivo = direccion.normalized() * velocidad * factor
+		
 	velocity.x = move_toward(velocity.x, objetivo.x, aceleracion * delta)
 	velocity.z = move_toward(velocity.z, objetivo.z, aceleracion * delta)
+	
 	if objetivo.length() > 0.1:
 		basis = basis.slerp(Basis.looking_at(objetivo), delta * 8.0).orthonormalized()
 
