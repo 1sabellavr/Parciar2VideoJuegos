@@ -107,7 +107,6 @@ func recibir_dano(cantidad: float) -> float:
 	Efectos.particulas(particulas_impacto)
 	return vida
 
-
 func _patrullar(delta: float) -> void:
 	if puntos.is_empty():
 		_frenar(delta)
