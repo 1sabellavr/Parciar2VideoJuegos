@@ -2,5 +2,5 @@ Escribe aquí las tres medidas que imprime la consola mientras juegas.
 Cópialas tal cual aparecen, con sus decimales.
 
 MEDIDA 1  altura_max_salto           = 1.59
-MEDIDA 2  tiempo_hasta_velocidad_max = 0. 23 s , 0.25 s , 0.27 s , 0.32 s (este valor esta variando)
+MEDIDA 2  tiempo_hasta_velocidad_max = 0. 23 s , 0.25 s , 0.27 s , 0.32 s (este valor esta variando cuando le doy run project)
 MEDIDA 3  primer_cambio              = 5.83 m
