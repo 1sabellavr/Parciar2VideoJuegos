@@ -7,6 +7,7 @@ var jugador_cerca: bool = false
 
 func _ready() -> void:
 	body_entered.connect(_al_entrar)
+	body_exited.connect(_al_salir)
 
 
 func _al_entrar(_cuerpo: Node3D) -> void:
@@ -18,5 +19,5 @@ func _al_salir(_cuerpo: Node3D) -> void:
 
 
 func _process(_delta: float) -> void:
-	if jugador_cerca and Input.is_action_pressed("accion"):
+	if jugador_cerca and Input.is_action_just_pressed("accion"):
 		print("Puerta activada")
