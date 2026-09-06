@@ -10,6 +10,7 @@ extends CharacterBody3D
 @export var turn_speed: float = 12.0
 
 
+
 func _ready() -> void:
 	if camara == null:
 		camara = get_viewport().get_camera_3d()
@@ -26,11 +27,13 @@ func _physics_process(delta: float) -> void:
 	direction.y = 0.0
 	direction = direction.normalized()
 
+	var objetivo := direction * speed
+	var ritmo := aceleracion if direction.length() > 0.1 else friccion
+
 
 	# TODO (Tarea 3): esto asigna la velocidad DE GOLPE. Reemplazar por
 	# move_toward con aceleración y fricción, como en la Sesión 9.
-	var objetivo := direction * speed
-	var ritmo := aceleracion if direction.length() > 0.1 else friccion
+
 	velocity.x = move_toward(velocity.x, objetivo.x, ritmo * delta)
 	velocity.z = move_toward(velocity.z, objetivo.z, ritmo * delta)
 
