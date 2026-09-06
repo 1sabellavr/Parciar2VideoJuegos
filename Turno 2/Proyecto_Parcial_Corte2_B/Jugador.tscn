@@ -44,7 +44,7 @@ objetivo = NodePath("..")
 [node name="Camera3D" type="Camera3D" parent="Cuerpo/SpringArm3D" unique_id=431527060]
 transform = Transform3D(1, 0, 0, 0, 0.999139, -0.041485548, 0, 0.041485548, 0.999139, 0, -0.040976644, 2.0283825)
 
-[node name="ZonaAtaque" type="Area3D" parent="Cuerpo" unique_id=1311716864]
+[node name="ZonaAtaque" type="Area3D" parent="Cuerpo" unique_id=1311716864 groups=["player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 collision_mask = 5
 script = ExtResource("3_ucnt4")
