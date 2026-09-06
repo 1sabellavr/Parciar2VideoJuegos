@@ -46,6 +46,7 @@ transform = Transform3D(1, 0, 0, 0, 0.999139, -0.041485548, 0, 0.041485548, 0.99
 
 [node name="ZonaAtaque" type="Area3D" parent="Cuerpo" unique_id=1311716864]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+collision_mask = 5
 script = ExtResource("3_ucnt4")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Cuerpo/ZonaAtaque" unique_id=2027388917]

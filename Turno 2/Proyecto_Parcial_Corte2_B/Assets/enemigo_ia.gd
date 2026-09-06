@@ -11,7 +11,7 @@ enum Estado { PATRULLAR, PERSEGUIR, ATACAR, HUIR }
 @export var vida: float = 100.0
 @export var vida_huida: float = 30.0
 @export var altura_ojos: float = 0.9
-@export var ruta: Array[Vector3] = [Vector3(0, 0, 0), Vector3(6, 0, 0)]
+@export var ruta: Array[Vector3] = [Vector3(0, 0, 0), Vector3(8, 0, 0)]
 
 var estado_actual: Estado = Estado.PATRULLAR
 var indice_punto: int = 0
@@ -89,7 +89,10 @@ func _decidir_estado(distancia: float, lo_veo: bool) -> Estado:
 ##      ya están armadas como el nodo ParticulasImpacto de esta escena.
 func recibir_dano(cantidad: float) -> float:
 	vida = max(vida - cantidad, 0.0)
-	# TODO: agregar aquí el flash y las partículas.
+	Efectos.flash(mesh.get_surface_override_material(0), "albedo_color", Color.WHITE, 0.1, self)
+	Efectos.particulas(particulas_impacto)
+	if vida <= 0:
+		queue_free()
 	return vida
 
 func _tiene_linea_vision() -> bool:
