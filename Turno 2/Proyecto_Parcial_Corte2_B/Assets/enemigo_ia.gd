@@ -74,7 +74,6 @@ func _decidir_estado(distancia: float, lo_veo: bool) -> Estado:
 		return Estado.ATACAR
 	if distancia <= rango_vision and lo_veo:
 		return Estado.PERSEGUIR
-	# TODO: reemplazar esta línea por la lógica completa descrita arriba.
 	return Estado.PATRULLAR
 	
 func _tiene_linea_vision() -> bool:
