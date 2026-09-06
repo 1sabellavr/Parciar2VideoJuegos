@@ -92,14 +92,21 @@ func recibir_dano(cantidad: float) -> float:
 	# TODO: agregar aquí el flash y las partículas.
 	return vida
 
-
 func _tiene_linea_vision() -> bool:
 	if jugador == null:
 		return false
+		
 	var objetivo: Vector3 = jugador.global_position + Vector3(0, altura_ojos, 0)
+	
+	# target_position del RayCast3D se mide en coordenadas LOCALES al rayo,
+ # n# o globales, por eso hay que convertir.
 	vision.target_position = vision.to_local(objetivo)
 	vision.force_raycast_update()
+	
+	
 	if vision.is_colliding():
+		# Chocó contra algo: solo hay línea de visión si ese algo es el jugador
+  # y no una pared que se atravesó en el camino.
 		return vision.get_collider() == jugador
 	return true
 
@@ -108,8 +115,12 @@ func _patrullar(delta: float) -> void:
 	if puntos.is_empty():
 		_frenar(delta)
 		return
+		
+		
 	var destino: Vector3 = puntos[indice_punto]
 	_moverse_hacia(destino, 1.0, delta)
+	
+	
 	if _distancia_plana(global_position, destino) < 0.5:
 		indice_punto = (indice_punto + 1) % puntos.size()
 
@@ -117,11 +128,14 @@ func _patrullar(delta: float) -> void:
 func _moverse_hacia(destino: Vector3, factor: float, delta: float) -> void:
 	var direccion := destino - global_position
 	direccion.y = 0.0
+	
 	var objetivo := Vector3.ZERO
 	if direccion.length() > 0.05:
 		objetivo = direccion.normalized() * velocidad * factor
+		
 	velocity.x = move_toward(velocity.x, objetivo.x, aceleracion * delta)
 	velocity.z = move_toward(velocity.z, objetivo.z, aceleracion * delta)
+	
 	if objetivo.length() > 0.1:
 		basis = basis.slerp(Basis.looking_at(objetivo), delta * 8.0).orthonormalized()
 
