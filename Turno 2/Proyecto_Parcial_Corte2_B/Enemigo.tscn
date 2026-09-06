@@ -15,6 +15,7 @@ albedo_color = Color(0.85, 0.18, 0.2, 1)
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ene"]
 radius = 0.35
 height = 1.75
+
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_impacto"]
 emission_shape = 1
 emission_sphere_radius = 0.15
@@ -25,7 +26,10 @@ initial_velocity_max = 3.0
 gravity = Vector3(0, -6, 0)
 scale_min = 0.6
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ucnt4"]
+
 [sub_resource type="SphereMesh" id="SphereMesh_impacto"]
+material = SubResource("StandardMaterial3D_ucnt4")
 radius = 0.06
 height = 0.12
 
@@ -55,4 +59,3 @@ one_shot = true
 explosiveness = 0.9
 process_material = SubResource("ParticleProcessMaterial_impacto")
 draw_pass_1 = SubResource("SphereMesh_impacto")
-
